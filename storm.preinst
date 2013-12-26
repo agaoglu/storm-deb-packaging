@@ -1,2 +1,12 @@
 #!/bin/sh
-/usr/sbin/adduser --system --home=/usr/lib/storm --gecos=Storm --disabled-password --shell=/bin/bash --group storm
+if ! getent passwd storm >/dev/null;
+then
+	# Adding system user: storm .
+	adduser \
+	  --system \
+	  --group  \
+	  --home /usr/lib/storm \
+	  --gecos Storm \
+	  --shell /bin/nologin \
+	  storm  >/dev/null
+fi

@@ -1,15 +1,15 @@
 #!/bin/bash
 set -x
 name=storm
-version=0.9.0-wip21
+version=0.9.0.1
 description="Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation. Storm is simple, can be used with any programming language, is used by many companies, and is a lot of fun to use!"
 url="http://storm-project.net"
 arch="all"
 section="misc"
 package_version=""
-src_package="storm-${version}.zip"
+src_package="storm-${version}.tar.gz"
 #download_url="https://github.com/downloads/nathanmarz/storm/${src_package}"
-download_url="https://www.dropbox.com/s/8ncawo6hh1jp169/storm-0.9.0-wip21.zip"
+download_url="https://dl.dropboxusercontent.com/s/tqdpoif32gufapo/storm-0.9.0.1.tar.gz"
 origdir="$(pwd)"
 storm_root_dir=/usr/lib/storm
 
@@ -37,7 +37,7 @@ mkdir -p build/etc/init.d
 mkdir -p build/var/log/storm
 
 # Explode downloaded archive & cleanup files
-unzip ${origdir}/storm-${version}.zip
+tar -zxf ${origdir}/storm-${version}.tar.gz
 rm -rf storm-${version}/logs
 rm -rf storm-${version}/log4j
 rm -rf storm-${version}/conf
