@@ -1,14 +1,15 @@
 #!/bin/bash
 set -x
 name=storm
-version=0.8.1
+version=0.9.0-wip21
 description="Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation. Storm is simple, can be used with any programming language, is used by many companies, and is a lot of fun to use!"
 url="http://storm-project.net"
 arch="all"
 section="misc"
 package_version=""
 src_package="storm-${version}.zip"
-download_url="https://github.com/downloads/nathanmarz/storm/${src_package}"
+#download_url="https://github.com/downloads/nathanmarz/storm/${src_package}"
+download_url="https://www.dropbox.com/s/8ncawo6hh1jp169/storm-0.9.0-wip21.zip"
 origdir="$(pwd)"
 storm_root_dir=/usr/lib/storm
 
@@ -46,7 +47,7 @@ cp -R storm-${version}/* build${storm_root_dir}
 cd build
 cp ${origdir}/storm ${origdir}/storm-nimbus ${origdir}/storm-supervisor ${origdir}/storm-ui ${origdir}/storm-drpc etc/default
 cp ${origdir}/storm.yaml etc/storm
-cp ${origdir}/storm.log.properties etc/storm
+cp ${origdir}/storm-logback.xml etc/storm
 cp ${origdir}/storm-nimbus.conf ${origdir}/storm-supervisor.conf ${origdir}/storm-ui.conf ${origdir}/storm-drpc.conf etc/init
 #_ Symlinks for upstart init scripts
 for f in etc/init/*; do f=$(basename $f); f=${f%.conf}; ln -s /lib/init/upstart-job etc/init.d/$f; done

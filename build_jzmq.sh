@@ -36,6 +36,10 @@ fi
 # Build package
 ./autogen.sh
 ./configure --prefix=${prefix}
+touch src/classdist_noinst.stamp
+cd src
+CLASSPATH=.:./.:$CLASSPATH javac -d . org/zeromq/ZMQ.java org/zeromq/ZMQException.java org/zeromq/ZMQQueue.java org/zeromq/ZMQForwarder.java org/zeromq/ZMQStreamer.java
+cd ..
 make
 if [ $? != 0 ]; then
   echo "Failed to build ${name}. Please ensure all dependencies are installed"
@@ -60,3 +64,4 @@ fpm -t deb \
     -- .
 mv ${name}*.deb ${origdir}
 popd
+
